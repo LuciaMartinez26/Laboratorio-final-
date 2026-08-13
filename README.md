@@ -10,8 +10,8 @@ Aplicación web desarrollada para la gestión académica estudiantil, control de
 * Netlify para el despliegue
 
 ## Enlaces del Proyecto
-* **Sitio Web en Netlify:** [PEGA_AQUÍ_TU_ENLACE_DE_NETLIFY]
+* **Sitio Web en Netlify:** [silver-parfait-aa75b4.netlify.app]
 * **Video Explicativo:** [PEGA_AQUÍ_TU_ENLACE_DE_YOUTUBE_O_DRIVE]
 
 ## Autores
-* Integrantes del equipo / Nombre del estudiante
+* Adrina Lucia Martínez Martínez 
