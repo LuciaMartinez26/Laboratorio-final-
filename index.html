@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UTDD Web - Portal Institucional</title>
+    <!-- Ruta a tu carpeta de CSS -->
+    <link rel="stylesheet" href="estilo.css/estilos.css">
+</head>
+<body>
+
+    <!-- Menú Lateral -->
+    <nav class="sidebar">
+        <div class="brand">
+            <h2>UTDD Web</h2>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Inicio</a></li>
+            <li><a href="login.html">Autenticación</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="estudiantes.html">Estudiantes</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <main class="main-content">
+        
+        <!-- Hero Banner Institucional -->
+        <section class="card" style="background: linear-gradient(135deg, #ffffff 0%, #eef2ff 100%); padding: 35px; border-left: 5px solid #7b9acc; margin-bottom: 25px;">
+            <span style="font-size: 0.85rem; font-weight: 600; color: #6366f1; text-transform: uppercase; letter-spacing: 0.05em;">Sistema Web de Gestión Académica</span>
+            <h1 style="font-size: 2.1rem; color: #1e293b; margin: 8px 0 12px 0; font-weight: 700;">Universidad Tecnológica de Desarrollo Digital</h1>
+            <p style="color: #64748b; max-width: 650px; font-size: 1rem; line-height: 1.5; margin-bottom: 20px;">
+                Plataforma integral diseñada para la administración eficiente de expedientes estudiantiles, seguimiento de calificaciones en tiempo real y generación de reportes institucionales.
+            </p>
+            <div style="display: flex; gap: 12px;">
+                <a href="estudiantes.html" class="btn btn-primary">Gestionar Alumnos →</a>
+                <a href="dashboard.html" class="btn btn-secondary">Ver Estándares e Indicadores</a>
+            </div>
+        </section>
+
+        <!-- Tarjetas Informativas / Accesos Rápidos -->
+        <h3 style="color: #334155; margin-bottom: 15px; font-weight: 600;">Módulos del Sistema</h3>
+        <section class="content-grid" style="margin-bottom: 25px;">
+            
+            <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <div style="font-size: 1.8rem; margin-bottom: 10px;">🎓</div>
+                    <h3>Control de Alumnos</h3>
+                    <p style="color: #64748b; font-size: 0.9rem; line-height: 1.4; margin-bottom: 15px;">
+                        Inscripción de nuevos estudiantes, edición de expedientes y consulta del detalle completo de asignaturas asignadas.
+                    </p>
+                </div>
+                <a href="estudiantes.html" class="btn btn-secondary" style="text-align: center;">Ir a Estudiantes</a>
+            </div>
+
+            <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <div style="font-size: 1.8rem; margin-bottom: 10px;">📊</div>
+                    <h3>Dashboard Estadístico</h3>
+                    <p style="color: #64748b; font-size: 0.9rem; line-height: 1.4; margin-bottom: 15px;">
+                        Métricas globales en tiempo real: porcentajes de aprobación, promedios generales y resumen de rendimiento académico.
+                    </p>
+                </div>
+                <a href="dashboard.html" class="btn btn-secondary" style="text-align: center;">Ver Métricas</a>
+            </div>
+
+            <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <div style="font-size: 1.8rem; margin-bottom: 10px;">🔐</div>
+                    <h3>Acceso y Seguridad</h3>
+                    <p style="color: #64748b; font-size: 0.9rem; line-height: 1.4; margin-bottom: 15px;">
+                        Autenticación de personal administrativo y docentes para la gestión segura de las calificaciones del ciclo.
+                    </p>
+                </div>
+                <a href="login.html" class="btn btn-secondary" style="text-align: center;">Iniciar Sesión</a>
+            </div>
+
+        </section>
+
+        <!-- Banner de Información Adicional -->
+        <section class="card" style="background-color: #f8fafc; border: 1px dashed #cbd5e1; text-align: center; padding: 20px;">
+            <p style="color: #64748b; font-size: 0.88rem;">
+                ¿Necesitas ayuda o soporte técnico con la plataforma? <a href="contacto.html" style="color: #6366f1; text-decoration: none; font-weight: 600;">Contacta a Soporte Académico →</a>
+            </p>
+        </section>
+
+    </main>
+
+    <!-- Carga de Scripts -->
+    <script src="archivo.js/poo.js"></script>
+    <script src="archivo.js/storage.js"></script>
+    <script src="archivo.js/cookies.js"></script>
+    <script src="archivo.js/app.js"></script>
+</body>
+</html>

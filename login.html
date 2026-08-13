@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UTDD Web - Autenticación y Registro</title>
+    <!-- Ruta a tu carpeta de CSS -->
+    <link rel="stylesheet" href="estilo.css/estilos.css">
+</head>
+<body>
+
+    <!-- Menú Lateral -->
+    <nav class="sidebar">
+        <div class="brand">
+            <h2>UTDD Web</h2>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="login.html" class="active">Autenticación</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="estudiantes.html">Estudiantes</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <main class="main-content">
+        <header class="header">
+            <h1>Acceso al Sistema Institucional</h1>
+            <p>Módulo de inicio de sesión y registro para docentes y personal administrativo</p>
+        </header>
+
+        <section class="content-grid" style="max-width: 900px; margin: 0 auto;">
+            
+            <!-- TARJETA 1: INICIAR SESIÓN -->
+            <div class="card" style="padding: 25px;">
+                <h3 style="margin-bottom: 15px; text-align: center;">🔐 Iniciar Sesión</h3>
+                <form id="form-login">
+                    <div class="form-group">
+                        <label for="login-usuario">Usuario / ID / Correo:</label>
+                        <div style="display: flex; align-items: center;">
+                            <input type="text" id="login-usuario" class="form-control" placeholder="Ej: kevin.perez, DOC-105 o Kevin Perez" style="border-top-right-radius: 0; border-bottom-right-radius: 0;" required>
+                            <span style="background-color: #e2e8f0; padding: 10px 12px; border: 1px solid #e2e8f0; border-left: none; border-top-right-radius: 10px; border-bottom-right-radius: 10px; color: #64748b; font-size: 0.85rem; font-weight: 600; white-space: nowrap;">
+                                @utdd.edu
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-pass">Contraseña:</label>
+                        <input type="password" id="login-pass" class="form-control" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Ingresar al Sistema</button>
+                </form>
+            </div>
+
+            <!-- TARJETA 2: REGISTRO DE DOCENTES Y ADMINISTRADORES -->
+            <div class="card" style="padding: 25px; border-left: 4px solid #7b9acc;">
+                <h3 style="margin-bottom: 15px; text-align: center;">📝 Registrar Nuevo Personal</h3>
+                <form id="form-registro-personal">
+                    <div class="form-group">
+                        <label for="reg-tipo">Tipo de Usuario / Rol:</label>
+                        <select id="reg-tipo" class="form-control" required>
+                            <option value="Docente">Docente / Catedrático</option>
+                            <option value="Administrador">Administrador / Control Académico</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-nombre">Nombre Completo:</label>
+                        <input type="text" id="reg-nombre" class="form-control" placeholder="Ej: Ing. Mario Gómez" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-materia">Materia / Área asignada:</label>
+                        <input type="text" id="reg-materia" class="form-control" placeholder="Ej: Bases de Datos / Sistemas" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-correo-user">Correo / Usuario Institucional:</label>
+                        <div style="display: flex; align-items: center;">
+                            <input type="text" id="reg-correo-user" class="form-control" placeholder="mario.gomez" style="border-top-right-radius: 0; border-bottom-right-radius: 0;" required>
+                            <span style="background-color: #e2e8f0; padding: 10px 12px; border: 1px solid #e2e8f0; border-left: none; border-top-right-radius: 10px; border-bottom-right-radius: 10px; color: #64748b; font-size: 0.85rem; font-weight: 600; white-space: nowrap;">
+                                @utdd.edu
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-pass">Contraseña:</label>
+                        <input type="password" id="reg-pass" class="form-control" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="btn btn-secondary" style="width: 100%; margin-top: 10px; background-color: #a5b4fc; color: #ffffff;">Registrar Personal</button>
+                </form>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Carga de Scripts -->
+    <script src="archivo.js/validaciones.js"></script>
+    <script src="archivo.js/cookies.js"></script>
+    <script>
+        // Cargar o inicializar lista de personal guardada
+        function obtenerPersonal() {
+            let lista = JSON.parse(localStorage.getItem('personal_registrado'));
+            if (!lista || lista.length === 0) {
+                lista = [
+                    { rol: "Administrador", id: "ADMIN-01", nombre: "Administrador General", materia: "Gestión", correo: "admin@utdd.edu", pass: "1234" },
+                    { rol: "Docente", id: "DOC-101", nombre: "Ing. Carlos Mendoza", materia: "Programación Web", correo: "carlos.mendoza@utdd.edu", pass: "1234" }
+                ];
+                localStorage.setItem('personal_registrado', JSON.stringify(lista));
+            }
+            return lista;
+        }
+
+        // Manejo del Login Flexible
+        document.getElementById('form-login').onsubmit = (e) => {
+            e.preventDefault();
+            
+            let usuarioInput = document.getElementById('login-usuario').value.trim().toLowerCase();
+            const passInput = document.getElementById('login-pass').value.trim();
+
+            // Si el usuario escribió @utdd.edu en la casilla, se la quitamos para buscar bien
+            if (usuarioInput.includes('@')) {
+                usuarioInput = usuarioInput.split('@')[0];
+            }
+
+            const personal = obtenerPersonal();
+
+            // Buscar por Usuario, ID, Nombre o Correo
+            const encontrado = personal.find(p => {
+                const userCorreo = (p.correo || '').split('@')[0].toLowerCase();
+                const idUser = (p.id || '').toLowerCase();
+                const nombreUser = (p.nombre || '').toLowerCase();
+                
+                return userCorreo === usuarioInput || 
+                       idUser === usuarioInput || 
+                       nombreUser === usuarioInput ||
+                       (usuarioInput === 'admin' && p.rol === 'Administrador');
+            });
+
+            if (!encontrado) {
+                alert(`⚠️ Usuario no encontrado.\nPuedes ingresar utilizando tu ID (ej: DOC-105, ADMIN-06) o tu usuario registrado.`);
+                return;
+            }
+
+            // Validar la contraseña asignada o contraseña universal de prueba "1234"
+            const passValida = (encontrado.pass && encontrado.pass === passInput) || passInput === "1234";
+
+            if (!passValida) {
+                alert("❌ Contraseña incorrecta. Inténtalo de nuevo.");
+                return;
+            }
+
+            // Guardar la sesión activa del usuario que ingresó
+            localStorage.setItem('sesion_actual', JSON.stringify({
+                usuario: encontrado.nombre,
+                correo: encontrado.correo,
+                rol: encontrado.rol,
+                id: encontrado.id
+            }));
+
+            alert(`✅ ¡Bienvenido, ${encontrado.nombre}!\nRol activo: [${encontrado.rol}]`);
+            window.location.href = 'estudiantes.html';
+        };
+
+        // Registrar Nuevo Personal
+        document.getElementById('form-registro-personal').onsubmit = (e) => {
+            e.preventDefault();
+            const rol = document.getElementById('reg-tipo').value;
+            const nombre = document.getElementById('reg-nombre').value.trim();
+            const materia = document.getElementById('reg-materia').value.trim();
+            let usuarioInput = document.getElementById('reg-correo-user').value.trim().toLowerCase();
+            const pass = document.getElementById('reg-pass').value.trim();
+
+            if (usuarioInput.includes('@')) {
+                usuarioInput = usuarioInput.split('@')[0];
+            }
+
+            const correoCompleto = `${usuarioInput}@utdd.edu`;
+            let listaPersonal = obtenerPersonal();
+
+            const nuevoID = rol === "Docente" ? `DOC-${100 + listaPersonal.length + 1}` : `ADMIN-0${listaPersonal.length + 1}`;
+
+            const nuevoRegistro = {
+                rol: rol,
+                id: nuevoID,
+                nombre: nombre,
+                materia: materia,
+                correo: correoCompleto,
+                pass: pass
+            };
+
+            listaPersonal.push(nuevoRegistro);
+            localStorage.setItem('personal_registrado', JSON.stringify(listaPersonal));
+
+            alert(`¡${rol} registrado con éxito!\n\n📌 Para iniciar sesión puedes usar:\n• Tu ID: ${nuevoID}\n• Tu Nombre: ${nombre}\n• Tu Usuario: ${usuarioInput}`);
+            document.getElementById('form-registro-personal').reset();
+        };
+    </script>
+</body>
+</html>

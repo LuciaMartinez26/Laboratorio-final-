@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UTDD Web - Gestión de Estudiantes</title>
+    <!-- Ruta correcta a tu carpeta de CSS -->
+    <link rel="stylesheet" href="estilo.css/estilos.css">
+</head>
+<body>
+
+    <!-- Menú Lateral -->
+    <nav class="sidebar">
+        <div class="brand">
+            <h2>UTDD Web</h2>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="login.html">Autenticación</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="estudiantes.html" class="active">Estudiantes</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <main class="main-content">
+        <header class="header">
+            <h1>Gestión Académica de Estudiantes</h1>
+            <p>Registro de estudiantes, asignación de cursos y consulta de expedientes</p>
+        </header>
+
+        <!-- Contenedor dinámico para Edición de Estudiante -->
+        <div id="panel-editar-estudiante"></div>
+
+        <!-- Formularios de Registro -->
+        <section class="content-grid" style="margin-bottom: 30px;">
+            
+            <!-- Formulario 1: Nuevo Estudiante -->
+            <div class="card">
+                <h3>➕ Registrar Nuevo Estudiante</h3>
+                <form id="form-estudiante">
+                    <div class="form-group">
+                        <label for="est-carnet">Carnet (Ej: 2026-150):</label>
+                        <input type="text" id="est-carnet" class="form-control" placeholder="2026-150" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="est-nombre">Nombre Completo:</label>
+                        <input type="text" id="est-nombre" class="form-control" placeholder="Nombre y Apellido" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="est-correo-user">Correo Electrónico Institucional:</label>
+                        <div style="display: flex; align-items: center;">
+                            <input type="text" id="est-correo-user" class="form-control" placeholder="juan.perez" style="border-top-right-radius: 0; border-bottom-right-radius: 0;" required>
+                            <span style="background-color: #e2e8f0; padding: 10px 14px; border: 1px solid #e2e8f0; border-left: none; border-top-right-radius: 10px; border-bottom-right-radius: 10px; color: #64748b; font-size: 0.9rem; font-weight: 600; white-space: nowrap;">
+                                @utdd.edu
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="est-fecha">Fecha de Nacimiento:</label>
+                        <input type="date" id="est-fecha" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="est-carrera">Carrera / Programa:</label>
+                        <select id="est-carrera" class="form-control" required>
+                            <option value="Bachillerato en Computación">Bachillerato en Computación</option>
+                            <option value="Perito Contador">Perito Contador</option>
+                            <option value="Ingeniería en Desarrollo de Software">Ingeniería en Desarrollo de Software</option>
+                            <option value="Diseño Gráfico Digital">Diseño Gráfico Digital</option>
+                            <option value="Administración de Empresas">Administración de Empresas</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Registrar Alumno</button>
+                </form>
+            </div>
+
+            <!-- Formulario 2: Asignar Curso -->
+            <div class="card">
+                <h3>📚 Asignar Curso y Calificación</h3>
+                <form id="form-curso">
+                    <div class="form-group">
+                        <label for="select-estudiante">Seleccionar Estudiante:</label>
+                        <select id="select-estudiante" class="form-control" required>
+                            <option value="">-- Cargar Alumno --</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="curso-codigo">Código del Curso:</label>
+                        <input type="text" id="curso-codigo" class="form-control" placeholder="CC101" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="curso-nombre">Nombre de la Asignatura:</label>
+                        <input type="text" id="curso-nombre" class="form-control" placeholder="Programación Web" required>
+                    </div>
+                    <div class="row-grid" style="display: flex; gap: 10px;">
+                        <div class="form-group" style="flex: 1;">
+                            <label for="curso-creditos">Créditos:</label>
+                            <input type="number" id="curso-creditos" class="form-control" min="1" max="10" value="4" required>
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label for="curso-nota">Nota (0 - 100):</label>
+                            <input type="number" id="curso-nota" class="form-control" min="0" max="100" placeholder="85" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Asignar Curso</button>
+                </form>
+            </div>
+
+        </section>
+
+        <!-- SECCIÓN DINÁMICA: Personal Docente y Administrativo -->
+        <section class="card" style="margin-bottom: 30px;">
+            <h3>👨‍🏫 Personal Docente y Administrativo Registrado</h3>
+            <div id="contenedor-tarjetas-personal" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 15px;">
+                <!-- Carga Dinámica desde JavaScript -->
+            </div>
+        </section>
+
+        <!-- Contenedor dinámico para la Ficha Completa del Alumno -->
+        <div id="panel-detalle-estudiante"></div>
+
+        <!-- Tabla Principal de Alumnos Registrados -->
+        <section class="card">
+            <h3>Listado General de Estudiantes (30 Alumnos Registrados)</h3>
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Carnet</th>
+                            <th>Estudiante</th>
+                            <th>Edad</th>
+                            <th>Carrera</th>
+                            <th>Cursos</th>
+                            <th>Promedio</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-estudiantes-body">
+                        <!-- Carga Dinámica desde JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Carga de Scripts desde tu carpeta archivo.js -->
+    <script src="archivo.js/poo.js"></script>
+    <script src="archivo.js/validaciones.js"></script>
+    <script src="archivo.js/storage.js"></script>
+    <script src="archivo.js/cookies.js"></script>
+    <script src="archivo.js/app.js"></script>
+    
+    <script>
+        // Función para renderizar el personal guardado
+        function cargarPersonalGrafico() {
+            const contenedor = document.getElementById('contenedor-tarjetas-personal');
+            if (!contenedor) return;
+
+            const personal = JSON.parse(localStorage.getItem('personal_registrado')) || [
+                { rol: "Docente", id: "DOC-101", nombre: "Ing. Carlos Mendoza", materia: "Programación Web / POO" },
+                { rol: "Docente", id: "DOC-102", nombre: "Licda. Sofía Ramírez", materia: "Contabilidad General" },
+                { rol: "Docente", id: "DOC-103", nombre: "Arq. David Morales", materia: "Diseño Vectorial" },
+                { rol: "Administrador", id: "ADMIN-01", nombre: "Control Académico UTDD", materia: "Gestión General de Expedientes" }
+            ];
+
+            contenedor.innerHTML = '';
+            personal.forEach(p => {
+                const esDocente = p.rol === "Docente";
+                const badgeClass = esDocente ? "badge-success" : "";
+                const badgeStyle = esDocente ? "" : "background-color: #eef2ff; color: #4f46e5;";
+
+                contenedor.innerHTML += `
+                    <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px;">
+                        <span class="badge ${badgeClass}" style="${badgeStyle}">${p.rol}</span>
+                        <h4 style="margin-top: 8px; color: #1e293b;">${p.nombre}</h4>
+                        <p style="font-size: 0.82rem; color: #64748b; margin-top: 4px;"><strong>ID:</strong> ${p.id}</p>
+                        <p style="font-size: 0.85rem; color: #475569; margin-top: 6px;"><strong>Materia/Rol:</strong> ${p.materia}</p>
+                    </div>
+                `;
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', cargarPersonalGrafico);
+    </script>
+</body>
+</html>

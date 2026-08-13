@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UTDD Web - Dashboard Académico</title>
+    <!-- Ruta a tu carpeta de CSS -->
+    <link rel="stylesheet" href="estilo.css/estilos.css">
+</head>
+<body>
+
+    <!-- Menú Lateral -->
+    <nav class="sidebar">
+        <div class="brand">
+            <h2>UTDD Web</h2>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="login.html">Autenticación</a></li>
+            <li><a href="dashboard.html" class="active">Dashboard</a></li>
+            <li><a href="estudiantes.html">Estudiantes</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <main class="main-content">
+        <header class="header">
+            <h1>Dashboard Académico Institucional</h1>
+            <p>Resumen métrico de rendimiento, indicadores y reportes globales</p>
+        </header>
+
+        <!-- Tarjetas de Métricas (Pastel) -->
+        <section class="metrics-grid">
+            <div class="metric-card">
+                <h4>TOTAL ESTUDIANTES</h4>
+                <h2 id="total-estudiantes">0</h2>
+            </div>
+            <div class="metric-card">
+                <h4>CURSOS ACTIVOS</h4>
+                <h2 id="cursos-activos">0</h2>
+            </div>
+            <div class="metric-card">
+                <h4>PROMEDIO GENERAL</h4>
+                <h2 id="promedio-general">0.00</h2>
+            </div>
+            <div class="metric-card">
+                <h4>APROBADOS</h4>
+                <h2 id="total-aprobados" style="color: #065f46;">0</h2>
+            </div>
+            <div class="metric-card">
+                <h4>REPROBADOS</h4>
+                <h2 id="total-reprobados" style="color: #9f1239;">0</h2>
+            </div>
+        </section>
+
+        <!-- Reporte General -->
+        <section class="card">
+            <h3>Reporte Global de Rendimiento</h3>
+            <div class="table-responsive" style="margin-top: 15px;">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Carnet</th>
+                            <th>Nombre Completo</th>
+                            <th>Carrera</th>
+                            <th>Promedio</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-dashboard-body">
+                        <!-- Carga Dinámica desde JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Carga de Scripts desde tu carpeta archivo.js -->
+    <script src="archivo.js/poo.js"></script>
+    <script src="archivo.js/validaciones.js"></script>
+    <script src="archivo.js/storage.js"></script>
+    <script src="archivo.js/cookies.js"></script>
+    <script src="archivo.js/dashboard.js"></script>
+    <script src="archivo.js/app.js"></script>
+</body>
+</html>

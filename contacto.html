@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UTDD Web - Contacto</title>
+    <!-- Ruta a tu carpeta de CSS -->
+    <link rel="stylesheet" href="estilo.css/estilos.css">
+</head>
+<body>
+
+    <!-- Menú Lateral -->
+    <nav class="sidebar">
+        <div class="brand">
+            <h2>UTDD Web</h2>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="login.html">Autenticación</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="estudiantes.html">Estudiantes</a></li>
+            <li><a href="contacto.html" class="active">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <main class="main-content">
+        <header class="header">
+            <h1>Soporte y Contacto</h1>
+            <p>Envía tus dudas o comentarios al departamento académico</p>
+        </header>
+
+        <section class="card" style="max-width: 600px;">
+            <h3>📬 Formulario de Mensaje</h3>
+            <form id="form-contacto" style="margin-top: 15px;">
+                <div class="form-group">
+                    <label for="contacto-nombre">Nombre Completo:</label>
+                    <input type="text" id="contacto-nombre" class="form-control" placeholder="Tu nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="contacto-correo">Correo Electrónico:</label>
+                    <input type="email" id="contacto-correo" class="form-control" placeholder="correo@ejemplo.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="contacto-mensaje">Mensaje:</label>
+                    <textarea id="contacto-mensaje" class="form-control" rows="4" placeholder="Escribe tu consulta aquí..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Carga de Scripts -->
+    <script src="archivo.js/validaciones.js"></script>
+</body>
+</html>
